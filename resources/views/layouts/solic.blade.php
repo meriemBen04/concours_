@@ -1,13 +1,8 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 	<head>
-		<!-- Meta data -->
-		<meta charset="UTF-8">
-		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-		<meta content="Solic – Bootstrap5 Responsive Modern Simple Dashboard Clean HTML Premium Admin Template" name="description">
-		<meta content="Spruko Technologies Private Limited" name="author">
-		<meta name="keywords">
-
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+    	<meta name="csrf-token" content="{{ csrf_token() }}">
 		<!--favicon -->
 		<link rel="icon" href={{asset("solic_pro/assets/images/brand/favicon.ico")}} type="image/x-icon" >
 
@@ -59,9 +54,6 @@
 			}
 		</style>
 		
-		
-		
-
 	</head>
 
 	<body class="sidebar-mini2 app sidebar-mini">
@@ -96,7 +88,7 @@
 								
 								<div class="header-nav-link d-none d-lg-flex">
 									<a href="javascript:void(0);" class="d-flex nav-link icon" data-bs-toggle="dropdown">
-										<span id="current-lang" class="country-text ms-2 fs-14 fw-600">English <i class="mdi mdi-chevron-down ms-2"></i></span>
+										<span id="current-lang" class="country-text ms-2 fs-14 fw-600">English<i class="mdi mdi-chevron-down ms-2"></i></span>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-arrow">
 										<li><a href="#" class="dropdown-item" data-lang="en">English</a></li>
@@ -105,7 +97,7 @@
 										<li><a href="#" class="dropdown-item" data-lang="it">Italian</a></li>
 										<li><a href="#" class="dropdown-item" data-lang="ru">Russian</a></li>
 										<li><a href="#" class="dropdown-item" data-lang="es">Spanish</a></li>
-										<li><a href="#" class="dropdown-item" data-lang="ar">Arabe</a></li>
+										<li><a href="#" class="dropdown-item" data-lang="ar">Arabic</a></li>
 
 									</ul>
 								</div>
@@ -202,11 +194,12 @@
 												<ul class="dropdown-menu w-250 pt-0 dropdown-menu-arrow dropdown-menu-right">
 													<li>
 														<div class="dropdown-header mb-2 p-3 text-center">
-															<img class="avatar avatar-xl rounded-circle mx-auto mb-2" src={{ asset("solic_pro/assets/images/users/profile.png") }} alt="image">
-															<h5 class="mb-0">Jonathan Mills</h5>
-															<p class="mb-0 fs-13 opacity-75">Jonathan@gmail.com</p>
+															<img class="avatar avatar-xl rounded-circle mx-auto mb-2" src="{{ asset('solic_pro/assets/images/users/profile.png') }}" alt="image" height="100" width="auto">
+															<h5 class="mb-0">{{ Auth::user()->nom }} {{ Auth::user()->prenom  }}</h5>
+															<p class="mb-0 fs-13 opacity-75">{{ Auth::user()->email }}</p>
 														</div>
 													</li>
+													
 													<li>
 														<a href="profile.html" class="dropdown-item d-flex align-items-center">
 															<i class="ri-user-line fs-18 me-2 text-primary"></i>
@@ -304,7 +297,7 @@
 																<li class="side-menu__label1"><a href="javascript:void(0)">Activites</a></li>
 																<li><a class="slide-item" href="javascript:void(0)">Your condidats</a></li>
 																<li><a class="slide-item" href="javascript:void(0)">Your rooms</a></li>
-																<li><a class="slide-item" href="javascript:void(0)">Your concours </a></li>
+																<li><a class="slide-item" href="/concours">Your concours </a></li>
 																
 															</ul>
 															
@@ -326,9 +319,9 @@
 						</aside>
 					</div>
 					<!-- END LEFT-SIDEBAR-MENU -->
+					@yield('content')
 				</div>
-
-			
+            
 			</div>
 
 			
@@ -370,29 +363,30 @@
 			<!-- END SEARCH MODAL -->
 
 			<!-- START FOOTER -->
-			<footer class="footer">
-				<div class="container">
-					<div class="row align-items-center flex-row-reverse">
-						<div class="col-md-12 col-sm-12 text-center">
-							Copyright © 2023 <a href="#">Solic</a>. Designed by <a href="#">Spruko Technologies Private Limited</a> All rights reserved.
-						</div>
+			
+		
+		
+	</div>
+
+		<!-- END PAGE -->
+		<footer class="footer">
+			<div class="container">
+				<div class="row align-items-center flex-row-reverse">
+					<div class="col-md-12 col-sm-12 text-center">
+						Copyright © 2025 <a href="#"></a>. Designed by <a href="#">Meriem benyammi
 					</div>
 				</div>
-			</footer>
-			<!-- END FOOTER -->
-
-		</div>
-		<!-- END PAGE -->
-
-		<!-- BACK-TO-TOP -->
-		<a href="#top" id="back-to-top"><i class="fa fa-level-up"></i></a>
+			</div>
+		</footer>
+		<!-- END FOOTER -->
 
 		<!-- JQUERY SCRIPTS -->
+
 		<script src={{ asset("solic_pro/assets/js/vendors/jquery.min.js") }}></script>
 
 		<!-- BOOTSTRAP SCRIPTS -->
 		<script src={{ asset("solic_pro/assets/plugins/bootstrap/js/popper.min.js") }}></script>
-    	<script src={{ asset("solic_pro/assets/plugins/bootstrap/js/bootstrap.min.js") }}></script>
+		<script src={{ asset("solic_pro/assets/plugins/bootstrap/js/bootstrap.min.js") }}></script>
 
 		<!-- CHART-CIRCLE -->
 		<script src={{ asset("solic_pro/assets/js/vendors/circle-progress.min.js") }}></script>
@@ -404,13 +398,13 @@
 		<!-- APEX-CHARTS JS -->
 		<script src={{ asset("solic_pro/assets/plugins/apexcharts/apexcharts.min.js") }}></script>
 
-       	<!-- STICKY JS-->
+		<!-- STICKY JS -->
 		<script src={{ asset("solic_pro/assets/js/sticky.js") }}></script>
 
-		<!-- SIDEMENU JS-->
+		<!-- SIDEMENU JS -->
 		<script src={{ asset("solic_pro/assets/plugins/sidemenu/sidemenu.js") }}></script>
 
-		<!-- PERFECT SCROLL BAR JS-->
+		<!-- PERFECT SCROLL BAR JS -->
 		<script src={{ asset("solic_pro/assets/plugins/pscrollbar/perfect-scrollbar.js") }}></script>
 		<script src={{ asset("solic_pro/assets/plugins/pscrollbar/pscroll-sidemenu.js") }}></script>
 
@@ -425,7 +419,7 @@
 		<script src={{ asset("solic_pro/assets/plugins/sidebar/sidebar.js") }}></script>
 
 		<!-- INDEX-5 JS -->
-        <script src={{ asset("solic_pro/assets/js/index5.js") }}></script>
+		<script src={{ asset("solic_pro/assets/js/index5.js") }}></script>
 
 		<!-- CUSTOM-SWICTHER JS -->
 		<script src={{ asset("solic_pro/assets/js/custom-switcher.js") }}></script>
@@ -433,8 +427,9 @@
 		<!-- SWITCHER JS -->
 		<script src={{ asset("solic_pro/assets/switcher/js/switcher.js") }}></script>
 
-		<!-- CUSTOM JS-->
+		<!-- CUSTOM JS -->
 		<script src={{ asset("solic_pro/assets/js/custom.js") }}></script>
+
 		<script>
 			document.addEventListener("DOMContentLoaded", function () {
 				const langMenu = document.querySelectorAll(".dropdown-menu .dropdown-item");
@@ -513,6 +508,20 @@
 		});
 		</script>
 
+		<!-- DATA TABLE -->
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/jquery.dataTables.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/dataTables.bootstrap5.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/dataTables.buttons.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/buttons.bootstrap5.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/jszip.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/pdfmake/pdfmake.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/pdfmake/vfs_fonts.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/buttons.html5.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/buttons.print.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/buttons.colVis.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/dataTables.responsive.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/plugins/datatable/responsive.bootstrap5.min.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/js/table-data.js")}}"></script>
 
 	</body>
 </html>

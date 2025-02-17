@@ -22,11 +22,9 @@ use Illuminate\Support\Facades\Hash;
 
 
 Route::get('/password',function(){ dd(Hash::make('ADMIN')); }); 
-//should be deleted later
 
-// Route::get('login', 'Auth\GestionnaireLoginController@showLoginForm')->name('gestionnaire.login');
-// Route::post('/gestionnaire/login', 'Auth\GestionnaireLoginController@login')->name('gestionnaire.login.submit');
-// Route::get('/gestionnaire', 'GestionnaireController@index')->name('gestionnaire.home');
+
+
 
 
 

@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ConcoursController;
 
 
 /*
@@ -28,12 +31,25 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // // Routes pour admin et user (en fonction du rôle après la connexion)
-Route::get('/admin/home', function() {
-    return view('admins.home');
-})->name('admin.home');
-Route::get('/user/home', function() {
-    return view('users.home');
-})->name('user.home');
+// Route::get('/admin/home', function() {
+//     return view('admins.home');
+// })->name('admin.home');
+// Route::get('/user/home', function() {
+//     return view('users.home');
+// })->name('user.home');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
+});
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/user/home', [UserController::class, 'index'])->name('user.home');
+});
+
+Route::get('/concours', [ConcoursController::class, 'index'])->name('concours.index');
+
+Route::post('/concours/create',[ConcoursController::class, 'Create'])->name('concours.create');
+
 
 
 

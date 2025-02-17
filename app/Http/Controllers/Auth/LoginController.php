@@ -10,7 +10,7 @@ use App\Models\User;
 class LoginController extends Controller
 {
     // // Redirige l'utilisateur après connexion
-    // protected $redirectTo = '/login'; // Redirection par défaut après la connexion
+     protected $redirectTo = '/login'; // Redirection par défaut après la connexion
 
     public function __construct()
     {
@@ -31,6 +31,15 @@ class LoginController extends Controller
         'email' => 'required|email',
         'password' => 'required',
     ]);
+
+    if (Auth::check()) {
+        // Si l'utilisateur actuel essaie de se connecter avec un autre rôle, déconnecter
+        if (Auth::user()->email !== $request->email) {
+            Auth::logout();
+        } else {
+            return redirect()->back()->withErrors(['email' => 'Vous êtes déjà connecté.']);
+        }
+    }
 
     // Vérifier si l'email existe dans la base de données
     $user = User::where('email', $request->email)->first();
@@ -60,4 +69,8 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+
+
+
+
 }
