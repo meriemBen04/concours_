@@ -21,7 +21,7 @@
                         
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable" width="100%" cellspacing="0">
+                                <table class="table table-bordered text-nowrap border-bottom" id="file-datatable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">ID</th>
@@ -34,14 +34,14 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($concours as $conc) <!-- Use $conc here -->
-                                            <tr id="conc{{$conc->id}}">
+                                            <tr id="ligne{{$conc->id}}">
                                                 <td>{{$conc->id}}</td>
                                                 <td>{{$conc->annee_acadimique}}</td>
                                                 <td>{{$conc->date_debut}}</td>
                                                 <td>{{$conc->date_fin}}</td>
                                                 <td>{{$conc->description}}</td>
-                                                <td> 
-                                                    <div class="table-action">
+                                                <td id="action{{$conc->id}}"> 
+                                                    <div class="table-action ">
                                                         @include('includes.concours_edit_delet',compact('conc'))
             
                                                     </div>
@@ -51,6 +51,8 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+      
+
                             </div>
                         </div>
                     </div>
@@ -72,7 +74,7 @@
                             @csrf
         
                             <div class="form-group col-md-6">
-                                <label class="label label-default" for="annee">Année académique
+                                <label  for="annee">Année académique
                                 <span class="text-red">*</span>
                                 </label>
                                 <input required type="text" value="{{ old('annee') }}" name="annee" placeholder="2024/2025" class="form-control" id="annee" pattern="\d{4}/\d{4}" title="Format attendu : 2024/2025">
@@ -82,7 +84,7 @@
                             
         
                             <div class="form-group col-md-6">
-                                <label class="label label-default" for="date_debut">Date début
+                                <label  for="date_debut">Date début
                                     <span class="text-red">*</span>
 
                                 </label>
@@ -90,23 +92,23 @@
                             </div>
         
                             <div class="form-group col-md-6">
-                                <label class="label label-default" for="date_fin">Date fin
+                                <label  for="date_fin">Date fin
                                     <span class="text-red">*</span>
                                 </label>
                                 <input required type="date" value="{{ old('date_fin') }}" name="date_fin" class="form-control" id="date_fin" placeholder="Date de fin du concours">
                             </div>
         
                             <div class="form-group col-md-6">
-                                <label class="label label-default" for="description">Description</label>
+                                <label  for="description">Description</label>
                                 <textarea  name="description" class="form-control" id="description" placeholder="Description du concours">{{ old('description') }}</textarea>
                             </div>
                             <div class="btn-group col-md-6" role="group">
 
-                            <button type="submit" class="col-md-12 btn btn-primary">Enregistrer</button>
+                            <button type="submit" class="col-md-12 btn btn-success-light">Enregistrer</button>
                             </div>
 
                         <div class="btn-group col-md-6" role="group">
-                            <button type="button" class="col-md-12 btn btn-danger" data-bs-dismiss="modal" aria-label="Close" role="button">Fermer</button>
+                            <button type="button" class="col-md-12 btn btn-danger-light" data-bs-dismiss="modal" aria-label="Close" role="button">Fermer</button>
                         </div>
                         
                             <!-- Ajoute d'autres champs si nécessaire -->
@@ -120,3 +122,60 @@
     </div>
     
 @endsection
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function setValidation(input, isValid) {
+            let label = document.querySelector("label[for='" + input.id + "']");
+            if (!isValid) {
+                input.classList.add("is-invalid", "state-invalid");
+                if (label) label.classList.add("is-invalid", "state-invalid");
+            } else {
+                input.classList.remove("is-invalid", "state-invalid");
+                if (label) label.classList.remove("is-invalid", "state-invalid");
+            }
+        }
+    
+        document.getElementById("annee").addEventListener("input", function() {
+            let annee = this.value;
+            let regex = /^\d{4}\/\d{4}$/;
+            if (regex.test(annee)) {
+                let parts = annee.split("/");
+                if (parseInt(parts[1]) !== parseInt(parts[0]) + 1) {
+                    this.setCustomValidity("L'année académique doit être consécutive (ex: 2023/2024).");
+                    setValidation(this, false);
+                } else {
+                    this.setCustomValidity("");
+                    setValidation(this, true);
+                }
+            } else {
+                this.setCustomValidity("Format attendu : 2024/2025.");
+                setValidation(this, false);
+            }
+        });
+    
+        document.getElementById("date_debut").addEventListener("change", function() {
+            let debut = new Date(this.value);
+            let fin = new Date(document.getElementById("date_fin").value);
+            if (document.getElementById("date_fin").value && debut >= fin) {
+                this.setCustomValidity("La date de début doit être avant la date de fin.");
+                setValidation(this, false);
+            } else {
+                this.setCustomValidity("");
+                setValidation(this, true);
+            }
+        });
+    
+        document.getElementById("date_fin").addEventListener("change", function() {
+            let debut = new Date(document.getElementById("date_debut").value);
+            let fin = new Date(this.value);
+            if (document.getElementById("date_debut").value && debut >= fin) {
+                this.setCustomValidity("La date de fin doit être après la date de début.");
+                setValidation(this, false);
+            } else {
+                this.setCustomValidity("");
+                setValidation(this, true);
+            }
+        });
+    });
+</script>
+   

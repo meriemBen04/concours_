@@ -27,6 +27,9 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Update Concours
+
+
 
 
 
@@ -49,6 +52,11 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 Route::get('/concours', [ConcoursController::class, 'index'])->name('concours.index');
 
 Route::post('/concours/create',[ConcoursController::class, 'Create'])->name('concours.create');
+
+Route::post('/concours/update/{id}', [ConcoursController::class, 'update'])->name('concours.update');
+Route::post('/concours/delete/ajax', [ConcoursController::class, 'delete'])->name('concours.delete.ajax');
+
+
 
 
 

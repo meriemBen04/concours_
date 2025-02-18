@@ -17,18 +17,44 @@ $(function(e) {
             sSearch: '',
         }
     });
+    
+    
+	
 
     //______File-Export Data Table
     var table = $('#file-datatable').DataTable({
-        buttons: ['copy', 'excel', 'pdf', 'colvis'],
+        buttons: [
+            {
+                extend: 'copy',
+                exportOptions: {
+                    columns: ':not(:last-child)' // Ignore la dernière colonne
+                }
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':not(:last-child)' // Ignore la dernière colonne
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':not(:last-child)' // Ignore la dernière colonne
+                }
+            },
+            'colvis' // Bouton pour la visibilité des colonnes
+        ],
         language: {
             searchPlaceholder: 'Search...',
             scrollX: "100%",
             sSearch: '',
         }
     });
+    
+    // Ajouter les boutons à l'interface
     table.buttons().container()
         .appendTo('#file-datatable_wrapper .col-md-6:eq(0)');
+    
 
     //______Delete Data Table
     var table = $('#delete-datatable').DataTable({

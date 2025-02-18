@@ -2,7 +2,6 @@
 <html lang="en" dir="ltr">
 	<head>
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-    	<meta name="csrf-token" content="{{ csrf_token() }}">
 		<!--favicon -->
 		<link rel="icon" href="{{ asset('images/conc.png') }}" type="image/png">
 
@@ -55,13 +54,24 @@
 			iframe.skiptranslate {
 				display: none !important;
 			}
-			
-		
+			.alert-container {
+			position: fixed;
+			top: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 1050; /* Pour être au-dessus des autres éléments */
+			width: auto; /* Ajuste la largeur selon tes besoins */
+			max-width: 90%;
+			}
+
+
 		</style>
 		
 	</head>
 
 	<body class="sidebar-mini2 app sidebar-mini">
+		
+		
 
 	    <!-- GLOBAL-LOADER -->
 		<div id="global-loader">
@@ -323,8 +333,27 @@
 							</div>
 						</aside>
 					</div>
+  
+
+
 					<!-- END LEFT-SIDEBAR-MENU -->
 					@yield('content')
+					@if(session('notification.message'))
+					<div class=" alert-container alert 
+						@if(session('notification.type') == 'success') alert-success
+						@elseif(session('notification.type') == 'error') alert-danger
+						@elseif(session('notification.type') == 'info') alert-info
+						@elseif(session('notification.type') == 'warning') alert-warning
+						@elseif(session('notification.type') == 'primary') alert-primary
+						@elseif(session('notification.type') == 'secondary') alert-secondary
+						@endif alert-dismissible fade show" role="alert">
+						
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">x</button>
+						
+						{{ session('notification.message') }}
+					</div>
+@endif
+
 				</div>
             
 			</div>
