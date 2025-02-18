@@ -10,8 +10,15 @@ use App\Models\User;
 class LoginController extends Controller
 {
     // // Redirige l'utilisateur après connexion
-     protected $redirectTo = '/login'; // Redirection par défaut après la connexion
-
+    protected function redirectTo()
+    {
+        if (Auth::user()->role === 'admin') {
+            return '/admin/home';
+        } elseif (Auth::user()->role === 'user') {
+            return 'user/home';
+        }
+        return '/';
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

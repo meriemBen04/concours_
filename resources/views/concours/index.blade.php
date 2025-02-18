@@ -21,8 +21,7 @@
                         
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered text-nowrap border-bottom"
-                                    id="responsive-datatable">
+                                <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">ID</th>
@@ -41,7 +40,13 @@
                                                 <td>{{$conc->date_debut}}</td>
                                                 <td>{{$conc->date_fin}}</td>
                                                 <td>{{$conc->description}}</td>
-                                                <td>action</td>
+                                                <td> 
+                                                    <div class="table-action">
+                                                        @include('includes.concours_edit_delet',compact('conc'))
+            
+                                                    </div>
+            
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -67,7 +72,9 @@
                             @csrf
         
                             <div class="form-group col-md-6">
-                                <label class="label label-default" for="annee">Année académique (format : 2024/2025)</label>
+                                <label class="label label-default" for="annee">Année académique
+                                <span class="text-red">*</span>
+                                </label>
                                 <input required type="text" value="{{ old('annee') }}" name="annee" placeholder="2024/2025" class="form-control" id="annee" pattern="\d{4}/\d{4}" title="Format attendu : 2024/2025">
                                 <small class="form-text ">Veuillez entrer l'année académique au format "Année/Année" (ex : 2024/2025).</small>
                             </div>
@@ -75,34 +82,41 @@
                             
         
                             <div class="form-group col-md-6">
-                                <label class="label label-default" for="date_debut">Date début</label>
+                                <label class="label label-default" for="date_debut">Date début
+                                    <span class="text-red">*</span>
+
+                                </label>
                                 <input required type="date" value="{{ old('date_debut') }}" name="date_debut" class="form-control" id="date_debut" placeholder="Date début du concours">
                             </div>
         
                             <div class="form-group col-md-6">
-                                <label class="label label-default" for="date_fin">Date fin</label>
+                                <label class="label label-default" for="date_fin">Date fin
+                                    <span class="text-red">*</span>
+                                </label>
                                 <input required type="date" value="{{ old('date_fin') }}" name="date_fin" class="form-control" id="date_fin" placeholder="Date de fin du concours">
                             </div>
         
                             <div class="form-group col-md-6">
                                 <label class="label label-default" for="description">Description</label>
-                                <textarea required name="description" class="form-control" id="description" placeholder="Description du concours">{{ old('description') }}</textarea>
+                                <textarea  name="description" class="form-control" id="description" placeholder="Description du concours">{{ old('description') }}</textarea>
                             </div>
                             <div class="btn-group col-md-6" role="group">
 
                             <button type="submit" class="col-md-12 btn btn-primary">Enregistrer</button>
-                        </div>
+                            </div>
 
                         <div class="btn-group col-md-6" role="group">
-
-                            <button type="button" class="col-md-12 btn btn-danger" data-dismiss="modal" role="button">Fermer</button>
+                            <button type="button" class="col-md-12 btn btn-danger" data-bs-dismiss="modal" aria-label="Close" role="button">Fermer</button>
                         </div>
-        
+                        
                             <!-- Ajoute d'autres champs si nécessaire -->
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        
+        
     </div>
+    
 @endsection

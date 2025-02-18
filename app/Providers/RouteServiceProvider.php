@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,8 +18,18 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public static function home()
+    {
+        $user = Auth::user();
 
+        if ($user->role === 'admin') {
+            return '/admin/home';
+        } elseif ($user->role === 'user') {
+            return '/user/home';
+        }
+
+        return '/';
+    }
     /**
      * The controller namespace for the application.
      *
@@ -65,6 +76,8 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
     }
+    
+
 
 
 }

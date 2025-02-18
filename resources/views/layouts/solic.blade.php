@@ -4,13 +4,16 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
     	<meta name="csrf-token" content="{{ csrf_token() }}">
 		<!--favicon -->
-		<link rel="icon" href={{asset("solic_pro/assets/images/brand/favicon.ico")}} type="image/x-icon" >
+		<link rel="icon" href="{{ asset('images/conc.png') }}" type="image/png">
 
 		<!-- TITLE -->
-		<title>User page</title>
+		<title>user page</title>
 
 		<!-- BOOTSTRAP CSS -->
 		<link id="style" href={{ asset("solic_pro/assets/plugins/bootstrap/css/bootstrap.min.css") }} rel="stylesheet">
+		
+		
+
 
 		<!-- STYLES CSS -->
 		<link href={{ asset("solic_pro/assets/css/style.css") }} rel="stylesheet" >
@@ -52,6 +55,8 @@
 			iframe.skiptranslate {
 				display: none !important;
 			}
+			
+		
 		</style>
 		
 	</head>
@@ -72,9 +77,9 @@
 						<div class="main-container container-fluid d-flex ">
 							<div class="d-flex header-left">
 								<div class="responsive-logo">
-									<a class="main-logo" href="index.html">
-										<img src={{ asset("solic_pro/assets/images/brand/light-logo.png") }} class="desktop-logo desktop-logo-dark" alt="soliclogo">
-										<img src={{ asset("solic_pro/assets/images/brand/dark-logo.png") }} class="desktop-logo" alt="soliclogo">
+									<a class="main-logo" href="">
+										<img src={{ asset("images/conc.png") }}  class="desktop-logo desktop-logo-dark" alt="logo">
+										<img src={{ asset("images/conc.png") }}  class="desktop-logo" alt="logo">
 									</a>
 								</div>
 								<div class="header-nav-link">
@@ -249,9 +254,9 @@
 							<div class="app-sidebar__header">
 								<a class="main-logo" href="">
                                     <img src="{{ asset('images/conc.png') }}" class="desktop-logo desktop-logo-dark" alt="logo" width="150" height="auto">
-									<img src={{ asset("images/conc.png" )}} class="desktop-logo" alt="logo">
-									<img src={{ asset("images/conc.png") }} class="mobile-logo mobile-logo-dark" alt="logo">
-									<img src={{ asset("images/conc.png") }} class="mobile-logo" alt="logo">
+									<img src={{ asset("images/conc.png" )}} class="desktop-logo" alt="logo" width="150" height="auto">
+									<img src={{ asset("images/conc.png") }} class="mobile-logo mobile-logo-dark" alt="logo" width="150" height="auto">
+									<img src={{ asset("images/conc.png") }} class="mobile-logo" alt="logo"  width="150" height="auto">
 								</a>
 							</div>
 							<div class="main-sidemenu">
