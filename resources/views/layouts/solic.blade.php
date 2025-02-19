@@ -310,9 +310,10 @@
 														<div class="tab-pane active" id="side23">
 															<ul class="sidemenu-list">
 																<li class="side-menu__label1"><a href="javascript:void(0)">Activites</a></li>
-																<li><a class="slide-item" href="/condidats">Your condidats</a></li>
-																<li><a class="slide-item" href="/salles">Your rooms</a></li>
 																<li><a class="slide-item" href="/concours">Your concours </a></li>
+																<li><a class="slide-item" href="/condidats">Your condidats</a></li>
+																<li><a class="slide-item" href="/scan">Your Verefication</a></li>
+																<li><a class="slide-item" href="/salles">Your rooms</a></li>
 																
 															</ul>
 															

@@ -9,6 +9,7 @@ use App\Http\Controllers\ConcoursController;
 use App\Http\Controllers\SalleController;
 use App\Http\Controllers\CondidatController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ScanController;
 
 
 /*
@@ -70,6 +71,7 @@ Route::post('/candidats/upload', [CondidatController::class, 'import'])->name('i
 
 
 
+Route::post('/recherchercondidat', [ScanController::class, 'scan'])->name('scans.scan');
 
 Route::get('/salles', [SalleController::class, 'index'])->name('salles.index');
 
