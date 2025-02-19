@@ -311,7 +311,7 @@
 															<ul class="sidemenu-list">
 																<li class="side-menu__label1"><a href="javascript:void(0)">Activites</a></li>
 																<li><a class="slide-item" href="javascript:void(0)">Your condidats</a></li>
-																<li><a class="slide-item" href="javascript:void(0)">Your rooms</a></li>
+																<li><a class="slide-item" href="/salles">Your rooms</a></li>
 																<li><a class="slide-item" href="/concours">Your concours </a></li>
 																
 															</ul>

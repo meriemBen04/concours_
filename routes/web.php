@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConcoursController;
-
+use App\Http\Controllers\SalleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +57,14 @@ Route::post('/concours/update/{id}', [ConcoursController::class, 'update'])->nam
 Route::post('/concours/delete/ajax', [ConcoursController::class, 'delete'])->name('concours.delete.ajax');
 
 
+
+
+Route::get('/salles', [SalleController::class, 'index'])->name('salles.index');
+
+Route::post('/salles/create',[SalleController::class, 'create'])->name('salles.create');
+
+Route::post('/salles/update','SalleController@update');
+Route::post('/salles/delete/ajax', [SalleController::class, 'delete'])->name('salles.delete.ajax');
 
 
 
