@@ -17,6 +17,7 @@ class SalleController extends Controller
     {
         // Get all concours that are not soft deleted
         $salles = Salle::whereNull('deleted_at')->get();
+    
         // Pass the concours data to the view
         return view('salles.index', compact('salles'));
     }
