@@ -35,8 +35,9 @@ class CondidatController extends Controller
 
         session()->flash('notification.type' , 'success');
 
-   return back();    }
-   public function import(Request $request)
+   return back(); 
+}
+   public function import2(Request $request)
     {
         $request->validate([
             'file' => 'required|mimes:xls,xlsx,csv'
@@ -118,6 +119,100 @@ class CondidatController extends Controller
             return back();
         }
     }
+    public function import(Request $request)
+{
+    $request->validate([
+        'file' => 'required|mimes:xls,xlsx,csv'
+    ]);
+
+    $file = $request->file('file');
+    $filePath = $file->getPathname();
+
+    try {
+
+        $spreadsheet = IOFactory::load($filePath);
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = $sheet->toArray(null, true, true, true);
+
+        // Récupérer le dernier concours créé
+        $dernierConcours = Concours::latest('id')->first();
+        if (!$dernierConcours) {
+            return back()->with('error', 'Aucun concours trouvé.');
+        }
+
+        foreach ($rows as $index => $row) {
+
+
+            if ($index === 1 ) continue; // Ignorer la ligne d'entête
+            
+            $matricule = $row['A'] ?? null;
+            $email = $row['B'] ?? null;
+            $nom = $row['E'] ?? null;
+            $prenom = $row['F'] ?? null;
+            $dateNaissance = $row['G'] ?? null;
+            $phone = $row['H'] ?? null;
+            $specialiteNom = $row['I'] ?? null;
+            $salleNom = $row['K'] ?? null;
+
+            if ($dateNaissance) {
+
+                try {
+                    // Convertir en format MySQL (YYYY-MM-DD)
+                    $dateNaissance = Carbon::createFromFormat('d/m/Y', $dateNaissance)->format('Y-m-d');
+                } catch (\Exception $e) {
+                    dd($row);
+
+                    return back()->with('error', "Format de date invalide pour: $dateNaissance");
+                }
+
+            }
+           
+
+            if (!$matricule || !$nom || !$prenom || !$dateNaissance || !$salleNom || !$specialiteNom) {
+                continue;
+            }
+
+           
+
+            // Récupérer ou créer la salle
+            $salle = Salle::firstOrCreate(['nom' => $salleNom]);
+
+            $specialite = Specialite::firstOrCreate(
+                ['nom' => $specialiteNom],
+                ['created_at' => now(), 'updated_at' => now()]
+            );
+
+            // Récupérer ou créer le candidat avec sa spécialité
+            $candidat = Condidat::firstOrCreate(
+                ['matricule' => $matricule],
+                [
+                    'nom' => $nom,
+                    'prenom' => $prenom,
+                    'email' => $email,
+                    'telephone' => $phone,
+                    'date_naissance' => $dateNaissance,
+                    'specialite_id' => $specialite->id
+                ]
+            );
+
+            // Affecter le candidat à la salle et au concours
+            Affectation_salle::firstOrCreate([
+                'salle_id' => $salle->id,
+                'concours_id' => $dernierConcours->id,
+                'condidat_id' => $candidat->id
+            ]);
+        }
+
+        session()->flash('notification.type', 'success');
+        session()->flash('notification.message', 'Importation réussie.');
+        return back();
+    } catch (\Exception $e) {
+        session()->flash('notification.type', 'error');
+        session()->flash('notification.message', 'Erreur lors de l’importation: ' . $e->getMessage());
+        return back();
+    }
+}
+
 }
 
 

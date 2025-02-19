@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConcoursController;
 use App\Http\Controllers\SalleController;
 use App\Http\Controllers\CondidatController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -52,6 +53,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 Route::get('/concours', [ConcoursController::class, 'index'])->name('concours.index');
+Route::get('/scan', [HomeController::class, 'index2'])->name('concours.index');
+
 
 Route::post('/concours/create',[ConcoursController::class, 'Create'])->name('concours.create');
 
