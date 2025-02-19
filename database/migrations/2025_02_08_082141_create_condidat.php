@@ -15,14 +15,14 @@ class CreateCondidat extends Migration
     {
         Schema::create('condidats', function (Blueprint $table) {
         
-            $table->id();
+            $table->id()->autoIncrement();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('email')->unique();
+            $table->string('matricule')->unique();
+            $table->string('email')->unique()->nullable();
             $table->date('date_naissance');
-            $table->string('lieu_naissance');
             $table->foreignId('specialite_id')->constrained();
-            $table->string('telephone');
+            $table->string('telephone')->nullable();
             $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate(); 

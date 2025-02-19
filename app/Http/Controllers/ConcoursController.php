@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Concours;
+use Carbon\Carbon;
+
 
 class ConcoursController extends Controller
 {
@@ -23,7 +25,7 @@ class ConcoursController extends Controller
     public function create( Request $request) {
 
         Concours::addConcours($request);
-        session()->flash('notification.message' , 'Concours '.$request->type_abonnement.' Ajouté avec succés');
+        session()->flash('notification.message' , 'Concours '.$request->annee.' Ajouté avec succés');
 
              session()->flash('notification.type' , 'success');
 
@@ -70,5 +72,21 @@ public function delete(Request $request)
     
     
     }
+    public function viewdeleted()
+    {
+        $concours= Concours::onlyTrashed()->get();
+
+        return view('concours.restore', compact('concours'));
+
+        // code...
+    }
+    public function archiveOldConcours()
+{
+    $currentYear = Carbon::now()->year;
+
+    // Trouver les concours à archiver et faire un Soft Delete
+    Concours::whereRaw("LEFT(annee_acadimique, 4) < ?", [$currentYear])->delete();
+}
+
 
 }

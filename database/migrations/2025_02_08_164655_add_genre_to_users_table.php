@@ -14,8 +14,7 @@ class AddGenreToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('genre', ['homme', 'femme'])->default('homme');
-            $table->string('adresse')->nullable();
+            $table->string('genre')->nullable();
         });
     }
 

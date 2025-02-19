@@ -15,8 +15,8 @@ class CreateSpecialite extends Migration
     {
         Schema::create('specialites', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('description');
+            $table->string('nom')->unique();
+            $table->string('description')->nullable();
             $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate(); 

@@ -21,7 +21,7 @@
             
                     <!-- Bouton Fermer avec espace à gauche -->
                     <div class="btn-group w-50" role="group">
-                        <button type="button" class="btn btn-primary w-100 ms-2" data-bs-dismiss="modal" aria-label="Close" role="button">Fermer</button>
+                        <button type="button" class="btn btn-success w-100 ms-2" data-bs-dismiss="modal" aria-label="Close" role="button">Fermer</button>
                     </div>
                 </div>
             </div>

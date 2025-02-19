@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ConcoursController;
 use App\Http\Controllers\SalleController;
+use App\Http\Controllers\CondidatController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,13 @@ Route::post('/concours/create',[ConcoursController::class, 'Create'])->name('con
 
 Route::post('/concours/update/{id}', [ConcoursController::class, 'update'])->name('concours.update');
 Route::post('/concours/delete/ajax', [ConcoursController::class, 'delete'])->name('concours.delete.ajax');
+Route::get('/concours/viewdeleted',[ConcoursController::class, 'viewdeleted'])->name('concours.viewdeleted');
+
+Route::get('/condidats', [CondidatController::class, 'index'])->name('condidats.index');
+Route::post('/candidats/create', [CondidatController::class, 'store'])->name('candidats.store');
+Route::post('/candidats/upload', [CondidatController::class, 'import'])->name('import.candidats');
+
+
 
 
 

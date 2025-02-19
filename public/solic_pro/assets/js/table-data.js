@@ -17,6 +17,12 @@ $(function(e) {
             sSearch: '',
         }
     });
+    var table = $('#datatable-11').DataTable( {
+		lengthChange: true,
+		order:[[0,'desc']],
+	} );
+	table.buttons().container()
+	.appendTo( '#datatable-11_wrapper .col-md-6:eq(0)');
     
     
 	

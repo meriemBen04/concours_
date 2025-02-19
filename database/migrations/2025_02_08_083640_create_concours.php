@@ -18,7 +18,7 @@ class CreateConcours extends Migration
             $table->string('annee_acadimique');
             $table->string('date_debut');
             $table->string('date_fin');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->softDeletes();

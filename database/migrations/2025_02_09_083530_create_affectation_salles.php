@@ -17,7 +17,7 @@ class CreateAffectationSalles extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('salle_id')->constrained();
-            $table->foreignId('concour_id')->constrained();
+            $table->foreignId('concours_id')->constrained();
             $table->foreignId('condidat_id')->constrained();
             $table->softDeletes();});
     }

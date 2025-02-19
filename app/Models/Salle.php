@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 class Salle extends Model
 {
     use  HasFactory, SoftDeletes;
+    protected $fillable = ['nom'];
+
 
     
     public static function addSalle(Request $request)

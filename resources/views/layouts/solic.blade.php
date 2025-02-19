@@ -540,7 +540,32 @@
 				});
 			});
 		});
+
 		</script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<!-- Peity -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/peity/3.3.0/jquery.peity.min.js"></script>
+		<!-- Select2 CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+		<!-- Select2 JS -->
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+		<script>
+			$(document).ready(function() {
+				$('.select2').select2({
+					placeholder: "Sélectionner une spécialité",
+					allowClear: true
+				});
+			});
+		</script>
+
+
+    <script src="{{asset('solic_pro/assets/plugins/select2/select2.full.min.js')}}"></script>
+    <script src="{{asset('solic_pro/assets/js/select2.js')}}"></script>
+
+    
+
 
 		<!-- DATA TABLE -->
 		<script src="{{ asset("solic_pro/assets/plugins/datatable/js/jquery.dataTables.min.js")}}"></script>
@@ -556,6 +581,31 @@
 		<script src="{{ asset("solic_pro/assets/plugins/datatable/dataTables.responsive.min.js")}}"></script>
 		<script src="{{ asset("solic_pro/assets/plugins/datatable/responsive.bootstrap5.min.js")}}"></script>
 		<script src="{{ asset("solic_pro/assets/js/table-data.js")}}"></script>
+		<script src="{{ asset("solic_pro/assets/js/select2.js")}}"></script>
+		<script src="{{asset("assets/plugins/multipleselect/multiple-select.js")}}"></script>
+		<script src="{{asset("assets/plugins/multipleselect/multi-select.js")}}"></script>
 
+		<script src="{{  asset('solic_pro/assets/plugins/select2/select2.full.min.js')}}"></script>
+		<script src="{{  asset('solic_pro/assets/plugins/select2/select2.full.min.js')}}"></script>
+		<script src="{{  asset('solic_pro/assets/js/select2.js')}}"></script>
+		
+				<!-- CSS Select2 -->
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+		<!-- JS Select2 -->
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+		
+	
+		
+		{{-- <script>
+		$(document).ready(function() {
+					$('.js-example-basic-single1').select2({
+						'width': '99%',
+						'tags':true
+					});
+				});
+		</script> --}}
+		
 	</body>
 </html>
