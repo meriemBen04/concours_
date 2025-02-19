@@ -13,9 +13,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <a href="javascript:void(0);" class="btn btn-radius btn-secondary-light" data-bs-toggle="modal" data-bs-target="#ajoutModal"><i class="fe fe-plus me-2"></i>Ajouter un concours</a>
-                            <a href="/concours/viewdeleted" class="btn btn-radius btn-warning-light"><i class="zmdi zmdi-collection-text"></i>
-                                Concours archivés</a>
+                           <h3>Trouver votre salle en scannon votre CODE QR</h3>
                         </div>
                         <div class="card-body">
                             <input id="search"  type="text" class="form-control col-md-12"

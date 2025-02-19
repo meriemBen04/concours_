@@ -39,10 +39,10 @@
                                                 <td>{{$salle->capacite}}</td>
                                                 <td>{{$salle->description}}</td>
                                                 <td id="action{{$salle->id}}"> 
-                                                    <div class="table-action ">
+                                                    {{-- <div class="table-action ">
                                                         @include('includes.salles_edit_delet',compact('salle'))
             
-                                                    </div>
+                                                    </div> --}}
             
                                                 </td>
                                             </tr>

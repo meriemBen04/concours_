@@ -9,6 +9,7 @@ use App\Http\Controllers\ConcoursController;
 use App\Http\Controllers\SalleController;
 use App\Http\Controllers\CondidatController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SpecialiteController;
 
 
 /*
@@ -25,6 +26,7 @@ use App\Http\Controllers\HomeController;
 
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\Specialite;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
@@ -53,6 +55,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 });
 
 Route::get('/concours', [ConcoursController::class, 'index'])->name('concours.index');
+Route::get('/specialites', [SpecialiteController::class, 'index'])->name('specialite.index');
+
 Route::get('/scan', [HomeController::class, 'index2'])->name('concours.index');
 
 

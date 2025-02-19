@@ -310,17 +310,24 @@
 														<div class="tab-pane active" id="side23">
 															<ul class="sidemenu-list">
 																<li class="side-menu__label1"><a href="javascript:void(0)">Activites</a></li>
-																<li><a class="slide-item" href="/condidats">Your condidats</a></li>
-																<li><a class="slide-item" href="/salles">Your rooms</a></li>
-																<li><a class="slide-item" href="/concours">Your concours </a></li>
-																
-															</ul>
-															
+																<li><a class="slide-item" href="/condidats">Candidats</a></li>
+																<li><a class="slide-item" href="/salles">Salles</a></li>
+																<li><a class="slide-item" href="/concours">Concours </a></li>
+																<li><a class="slide-item" href="/specialites">Spécialités </a></li>	
 														</div>
 													</div>
 												</div>
 											</li>
 										</ul>
+										<br>
+										<li class="slide">
+											<a class="side-menu__item" href="/scan">
+												<span class="side-menu__icon">
+													<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path></svg>
+												</span>
+												<span class="side-menu__label text-truncate">Chercher votre salle</span>
+											</a>
+										</li>
 									</li>
 									
 									
