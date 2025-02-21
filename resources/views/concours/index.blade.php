@@ -21,7 +21,7 @@
                         
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered text-nowrap border-bottom" id="file-datatable" width="100%" cellspacing="0">
+                                <table class="table table-bordered text-nowrap border-bottom table-striped" id="file-datatable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">ID</th>

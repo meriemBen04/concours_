@@ -11470,10 +11470,15 @@ select.form-control-lg:not([size]):not([multiple]) {
     border: 0;
 }
 
-.table-hover tbody tr:hover,
+/* .table-hover tbody tr:hover,
 .table-hover tbody th {
     background-color: var(--background);
+} */
+ .table-hover tbody tr:hover > th,
+.table-hover tbody tr:hover > td {
+    background-color: var(--background) !important;
 }
+
 
 .table-light {
     background-color: #fdfdfe;

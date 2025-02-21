@@ -19,12 +19,12 @@
                         
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered text-nowrap border-bottom" id="file-datatable" width="100%" cellspacing="0">
+                                <table class="table table-bordered text-nowrap border-bottom table-striped" id="file-datatable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">ID</th>
                                             <th class="wd-15p border-bottom-0">Spécialité</th>
-                                            <th class="wd-20p border-bottom-0">description</th>
+                                            {{-- <th class="wd-20p border-bottom-0">description</th> --}}
                                             <th class="wd-25p border-bottom-0">Actions</th>
                                         </tr>
                                     </thead>
@@ -33,7 +33,7 @@
                                             <tr id="ligne{{$conc->id}}">
                                                 <td>{{$conc->id}}</td>
                                                 <td>{{$conc->nom}}</td>
-                                                <td>{{$conc->daescription}}</td>
+                                                {{-- <td>{{$conc->daescription}}</td> --}}
                                                 
                                                 <td> 
                                                     {{-- <div class="table-action ">

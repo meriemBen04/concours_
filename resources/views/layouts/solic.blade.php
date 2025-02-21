@@ -6,7 +6,7 @@
 		<link rel="icon" href="{{ asset('images/conc.png') }}" type="image/png">
 
 		<!-- TITLE -->
-		<title>user page</title>
+		<title>Concours 2024/2025</title>
 
 		<!-- BOOTSTRAP CSS -->
 		<link id="style" href={{ asset("solic_pro/assets/plugins/bootstrap/css/bootstrap.min.css") }} rel="stylesheet">
@@ -63,6 +63,24 @@
 			width: auto; /* Ajuste la largeur selon tes besoins */
 			max-width: 90%;
 			}
+			
+			#goog-gt-tt, .VIpgJd-yAWNEb-L7lbkb {
+			display: none !important;
+			}
+
+
+			
+
+						#candidate-info {
+				font-size: 1.5rem; /* Augmente la taille du texte */
+				padding: 20px; /* Ajoute un espacement interne */
+			}
+
+		.salle-highlight {
+			background-color: rgba(0, 128, 0, 0.3); /* Vert transparent */
+			transition: background-color 1s ease-in-out;
+		}
+
 
 
 		</style>
@@ -158,45 +176,45 @@
 													<div class="drop-heading">
 														<div class="d-flex">
 															<h5 class="mb-0 text-dark">Notifications</h5>
-															<span class="badge bg-danger ms-auto br-5">4</span>
+															{{-- <span class="badge bg-danger ms-auto br-5">4</span> --}}
 														</div>
 													</div>
-													<div class="dropdown-divider mt-0"></div>
-													<div class="header-dropdown-scroll1">
+													{{-- <div class="dropdown-divider mt-0"></div> --}}
+													{{-- <div class="header-dropdown-scroll1">
 														<a href="emailinbox.html" class="dropdown-item d-flex">
 															<div class="notifyimg bg-success-transparent">
 																<i class="fa fa-thumbs-o-up text-success"></i>
 															</div>
 															<div>
-																{{-- <strong>Someone likes our posts.</strong>
-																<div class="small text-muted">3 hours ago</div> --}}
+																<strong>Someone likes our posts.</strong>
+																<div class="small text-muted">3 hours ago</div>
 															</div>
 														</a>
 														<a href="emailinbox.html" class="dropdown-item d-flex">
 															<div class="notifyimg bg-primary-transparent">
 																<i class="fa fa-exclamation-triangle text-primary"></i>
 															</div>
-															{{-- <div>
+															 <div>
 																<strong> Issues Fixed</strong>
 																<div class="small text-muted">30 mins ago</div>
-															</div> --}}
+															</div> 
 														</a>
 														
 														<a href="emailinbox.html" class="dropdown-item d-flex">
 															<div class="notifyimg bg-danger-transparent">
 																<i class="fa fa-cogs text-danger"></i>
 															</div>
-															{{-- <div>
+															<div>
 																<strong> Server Rebooted.</strong>
 																<div class="small text-muted">45 mintues ago</div>
-															</div> --}}
+															</div>
 														</a>
 														
-													</div>
-													<div class="dropdown-divider mb-0"></div>
+													</div> --}}
+													{{-- <div class="dropdown-divider mb-0"></div>
 													<div class=" text-center p-2">
-														<a href="emailinbox.html" class="text-dark pt-0">View All Notifications</a>
-													</div>
+														<a href="" class="text-dark pt-0">View All Notifications</a>
+													</div> --}}
 												</div>
 											</li><!-- Notification -->
 
@@ -209,7 +227,7 @@
 												<ul class="dropdown-menu w-250 pt-0 dropdown-menu-arrow dropdown-menu-right">
 													<li>
 														<div class="dropdown-header mb-2 p-3 text-center">
-															<img class="avatar avatar-xl rounded-circle mx-auto mb-2" src="{{ asset('solic_pro/assets/images/users/profile.png') }}" alt="image" height="100" width="auto">
+															<img class="avatar avatar-xl rounded-circle mx-auto mb-2" src="{{ asset('solic_pro/assets/images/users/profile.png') }}" alt="image" height="150" width="auto">
 															<h5 class="mb-0">{{ Auth::user()->nom }} {{ Auth::user()->prenom  }}</h5>
 															<p class="mb-0 fs-13 opacity-75">{{ Auth::user()->email }}</p>
 														</div>
@@ -280,7 +298,7 @@
 										<h3>Main</h3>
 									</li>
 									<li class="slide">
-										<a class="side-menu__item" href="">
+										<a class="side-menu__item" href="/user/home">
 											<span class="side-menu__icon">
 												<svg xmlns="http://www.w3.org/2000/svg" class="side_menu_img" viewBox="0 0 24 24">
 													<path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z"></path>
@@ -368,7 +386,7 @@
 			
 
 			<!-- START SEARCH MODAL -->
-			<div class="modal fade header-search-modal" id="searchModal" tabindex="-1" aria-hidden="true">
+			{{-- <div class="modal fade header-search-modal" id="searchModal" tabindex="-1" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header p-0">
@@ -400,7 +418,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 			<!-- END SEARCH MODAL -->
 
 			<!-- START FOOTER -->
@@ -472,42 +490,42 @@
 		<script src={{ asset("solic_pro/assets/js/custom.js") }}></script>
 
 		<script>
-			document.addEventListener("DOMContentLoaded", function () {
-				const langMenu = document.querySelectorAll(".dropdown-menu .dropdown-item");
-				const currentLang = document.getElementById("current-lang");
+			// document.addEventListener("DOMContentLoaded", function () {
+			// 	const langMenu = document.querySelectorAll(".dropdown-menu .dropdown-item");
+			// 	const currentLang = document.getElementById("current-lang");
 		
-				langMenu.forEach(item => {
-					item.addEventListener("click", function (e) {
-						e.preventDefault();
-						let selectedLang = this.getAttribute("data-lang");
-						let selectedText = this.textContent;
+			// 	langMenu.forEach(item => {
+			// 		item.addEventListener("click", function (e) {
+			// 			e.preventDefault();
+			// 			let selectedLang = this.getAttribute("data-lang");
+			// 			let selectedText = this.textContent;
 		
-						// Met à jour le texte affiché dans le menu
-						currentLang.innerHTML = selectedText + ' <i class="mdi mdi-chevron-down ms-2"></i>';
+			// 			// Met à jour le texte affiché dans le menu
+			// 			currentLang.innerHTML = selectedText + ' <i class="mdi mdi-chevron-down ms-2"></i>';
 		
-						// Stocke la langue sélectionnée (optionnel, pour persister la préférence)
-						localStorage.setItem("selectedLang", selectedLang);
+			// 			// Stocke la langue sélectionnée (optionnel, pour persister la préférence)
+			// 			localStorage.setItem("selectedLang", selectedLang);
 		
-						// Met à jour le contenu selon la langue sélectionnée (exemple simple)
-						changeLanguage(selectedLang);
-					});
-				});
+			// 			// Met à jour le contenu selon la langue sélectionnée (exemple simple)
+			// 			changeLanguage(selectedLang);
+			// 		});
+			// 	});
 		
-				// Charger la langue stockée si elle existe
-				let savedLang = localStorage.getItem("selectedLang");
-				if (savedLang) {
-					let savedText = document.querySelector(`.dropdown-item[data-lang="${savedLang}"]`).textContent;
-					currentLang.innerHTML = savedText + ' <i class="mdi mdi-chevron-down ms-2"></i>';
-					changeLanguage(savedLang);
-				}
+			// 	// Charger la langue stockée si elle existe
+			// 	let savedLang = localStorage.getItem("selectedLang");
+			// 	if (savedLang) {
+			// 		let savedText = document.querySelector(`.dropdown-item[data-lang="${savedLang}"]`).textContent;
+			// 		currentLang.innerHTML = savedText + ' <i class="mdi mdi-chevron-down ms-2"></i>';
+			// 		changeLanguage(savedLang);
+			// 	}
 		
-				function changeLanguage(lang) {
-					// Ici, tu peux charger dynamiquement du contenu traduit
-					console.log("Langue changée en : " + lang);
-					// Exemple : Modifier du texte dans la page
-					document.documentElement.lang = lang;
-				}
-			});
+			// 	function changeLanguage(lang) {
+			// 		// Ici, tu peux charger dynamiquement du contenu traduit
+			// 		console.log("Langue changée en : " + lang);
+			// 		// Exemple : Modifier du texte dans la page
+			// 		document.documentElement.lang = lang;
+			// 	}
+			// });
 		</script>
 		<script>
 		function googleTranslateElementInit() {
@@ -601,11 +619,9 @@
 
 		<!-- JS Select2 -->
 		<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-		<script src="asset{{("solic_pro/assets/plugins/sweet-alert/sweetalert.min.js")}}"></script>
-		<script src="asset{{("solic_pro/assets/js/sweet-alert.js")}}"></script>
+		<script src="{{asset("solic_pro/assets/plugins/sweet-alert/sweetalert.min.js")}}"></script>
+		<script src="{{asset("solic_pro/assets/js/sweet-alert.js")}}"></script>
 
-		
-	
 		
 		{{-- <script>
 		$(document).ready(function() {
@@ -615,6 +631,8 @@
 					});
 				});
 		</script> --}}
+		
+
 		
 	</body>
 </html>

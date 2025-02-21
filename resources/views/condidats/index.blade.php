@@ -24,7 +24,7 @@
                         
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered text-nowrap border-bottom" id="file-datatable" width="100%" cellspacing="0">
+                                <table class="table table-bordered text-nowrap border-bottom table-striped" id="file-datatable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">ID</th>
@@ -34,7 +34,7 @@
                                             <th class="wd-10p border-bottom-0">Date de naissance</th>
                                             <th class="wd-10p border-bottom-0">Email</th>
                                             <th class="wd-10p border-bottom-0">Telephone</th>
-                                            <th class="wd-10p border-bottom-0">Genre</th>
+                                            {{-- <th class="wd-10p border-bottom-0">Genre</th> --}}
                                             <th class="wd-10p border-bottom-0">Spécialité</th>
                                             <th class="wd-10p border-bottom-0">Concours</th>
                                             <th class="wd-10p border-bottom-0">Salle</th>
@@ -48,10 +48,10 @@
                                                 <td>{{$conc->matricule}}</td>
                                                 <td>{{$conc->nom}}</td>
                                                 <td>{{$conc->prenom}}</td>
-                                                <td>{{$conc->date_naissance}}</td>
+                                                <td>{{ date_format(date_create($conc->date_naissance),"d/m/Y") ?? '' }}</td>
                                                 <td>{{$conc->email ?? ""}}</td>
                                                 <td>{{$conc->telephone ?? ""}}</td>
-                                                <td>{{$conc->genre ?? ""}}</td>
+                                                {{-- <td>{{$conc->genre ?? ""}}</td> --}}
 
 
                                                 <td>{{$conc->specialite->nom ?? ""}}</td>

@@ -21,14 +21,13 @@
                         
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered text-nowrap border-bottom" id="file-datatable" width="100%" cellspacing="0">
+                                <table class="table table-bordered text-nowrap border-bottom table-striped" id="file-datatable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th class="wd-15p border-bottom-0">ID</th>
                                             <th class="wd-15p border-bottom-0">Nom</th>
                                             <th class="wd-10p border-bottom-0">Capacité</th>
-                                            <th class="wd-10p border-bottom-0">Description</th>
-                                            <th class="wd-25p border-bottom-0">Actions</th>
+                                            {{-- <th class="wd-25p border-bottom-0">Actions</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,14 +36,13 @@
                                                 <td>{{$salle->id}}</td>
                                                 <td>{{$salle->nom}}</td>
                                                 <td>{{$salle->capacite}}</td>
-                                                <td>{{$salle->description}}</td>
-                                                <td id="action{{$salle->id}}"> 
+                                                {{-- <td id="action{{$salle->id}}">  --}}
                                                     {{-- <div class="table-action ">
                                                         @include('includes.salles_edit_delet',compact('salle'))
             
                                                     </div> --}}
             
-                                                </td>
+                                                {{-- </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -79,9 +77,9 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label  for="capacite">Capacité
-                                <span class="text-red">*</span>
+                                
                                 </label>
-                                     <input required type="number" step="1" min="1" max="500" value="{{ old('capacite', $salle->capacite ?? '') }}" name="capacite" placeholder="Capacité de la salle" class="form-control" id="capacite">
+                                     <input  type="number" step="1" min="1" max="500" value="{{ old('capacite', $salle->capacite ?? '') }}" name="capacite" placeholder="Capacité de la salle" class="form-control" id="capacite">
                                 </div>
                             
                             

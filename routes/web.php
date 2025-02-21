@@ -11,6 +11,8 @@ use App\Http\Controllers\CondidatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SpecialiteController;
 use App\Http\Controllers\ScanController;
+use App\Http\Controllers\MailController;
+
 
 
 /*
@@ -58,7 +60,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 Route::get('/concours', [ConcoursController::class, 'index'])->name('concours.index');
 Route::get('/specialites', [SpecialiteController::class, 'index'])->name('specialite.index');
 
-Route::get('/scan', [HomeController::class, 'index2'])->name('concours.index');
+Route::get('/scan', [HomeController::class, 'index2'])->name('scan.index');
 
 
 Route::post('/concours/create',[ConcoursController::class, 'Create'])->name('concours.create');
@@ -66,6 +68,8 @@ Route::post('/concours/create',[ConcoursController::class, 'Create'])->name('con
 Route::post('/concours/update/{id}', [ConcoursController::class, 'update'])->name('concours.update');
 Route::post('/concours/delete/ajax', [ConcoursController::class, 'delete'])->name('concours.delete.ajax');
 Route::get('/concours/viewdeleted',[ConcoursController::class, 'viewdeleted'])->name('concours.viewdeleted');
+Route::post('/searchcond/ajax', [ScanController::class, 'scan'])->name('condidat.search.ajax');
+
 
 Route::get('/condidats', [CondidatController::class, 'index'])->name('condidats.index');
 Route::post('/candidats/create', [CondidatController::class, 'store'])->name('candidats.store');
@@ -75,7 +79,7 @@ Route::post('/candidats/upload', [CondidatController::class, 'import'])->name('i
 
 
 
-Route::post('/recherchercondidat', [ScanController::class, 'scan'])->name('scans.scan');
+// Route::post('/recherchercondidat', [ScanController::class, 'scan'])->name('scans.scan');
 
 Route::get('/salles', [SalleController::class, 'index'])->name('salles.index');
 
@@ -84,6 +88,7 @@ Route::post('/salles/create',[SalleController::class, 'create'])->name('salles.c
 Route::post('/salles/update','SalleController@update');
 Route::post('/salles/delete/ajax', [SalleController::class, 'delete'])->name('salles.delete.ajax');
 
+Route::get('/send-email', [MailController::class, 'sendEmail']);
 
 
 

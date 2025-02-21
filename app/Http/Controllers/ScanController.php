@@ -21,10 +21,15 @@ class ScanController extends Controller
         $this->middleware('auth');
     }
    
-    public function scan()
+    public function scan( Request $request)
     {
         // Example URL (replace with dynamic input if needed)
-        $lien = "https://progres.mesrs.dz/api/print/convcation?token=f9b9a514-1060-4bed-9317-a6646246ed92";
+        $lien = $request->lien;
+        if (!filter_var($lien, FILTER_VALIDATE_URL)) {
+            // C'est un lien valide
+            return response()->json(["message" => "lien invalid"], 400);
+
+        } 
     
         // Fetch data from the given URL
         $response = Http::withOptions([
@@ -65,9 +70,23 @@ class ScanController extends Controller
         $salles=Salle::all();
 
         $matricule=$data[0];
-        $condidats = Condidat::where('matricule', $matricule)->get();
+        $condidat = Condidat::where('matricule', $matricule)->first();
        // dd($candidate);
-        return view('scan.index', compact('condidats', 'specialite', 'concours', 'salles'));       
+       if($condidat){
+        return response()->json([
+            "nom" => $condidat->nom,
+            "prenom" => $condidat->prenom,
+            "matricule" => $condidat->matricule,
+            "specialite" => $condidat->specialite->nom ?? "Non attribuée",
+            "concours" => $condidat->concours->annee_acadimique?? "Non défini",
+            "salle" => $condidat->salle->nom ?? "Non assignée"
+        ]);
+       }else{
+        return response()->json(["message" => "le condidat n'est pas concerner par  ce concours "], 400);
+
+       }
+        
+
        
 }
 
