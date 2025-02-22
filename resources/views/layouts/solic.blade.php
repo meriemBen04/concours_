@@ -622,7 +622,7 @@
 		<script src="{{asset("solic_pro/assets/plugins/sweet-alert/sweetalert.min.js")}}"></script>
 		<script src="{{asset("solic_pro/assets/js/sweet-alert.js")}}"></script>
 
-		
+		<script src="{{asset("solic_pro/assets/js/vendors/circle-progress.min.js")}}"></script>
 		{{-- <script>
 		$(document).ready(function() {
 					$('.js-example-basic-single1').select2({

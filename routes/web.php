@@ -88,7 +88,12 @@ Route::post('/salles/create',[SalleController::class, 'create'])->name('salles.c
 Route::post('/salles/update','SalleController@update');
 Route::post('/salles/delete/ajax', [SalleController::class, 'delete'])->name('salles.delete.ajax');
 
-Route::get('/send-email', [MailController::class, 'sendEmail']);
+// Route::get('/send-email', [MailController::class, 'sendEmail']);
+Route::get('/send-email', function () {
+    return view('send-mail');
+});
+Route::post('/send-email', [MailController::class, 'sendEmail'])->name('send-email');
+
 
 
 

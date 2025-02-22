@@ -196,14 +196,17 @@
 
             // Changer la couleur de fond avec une animation
             bodyDiv.animate({'backgroundColor': '#43c49c'}, 2000);
+           
+            var audiosuccess = new Audio("{{ asset('success.wav') }}");
+            audiosuccess.play();
 
             // Lecture vocale du message
-                    if ('speechSynthesis' in window) {
-            var phrase = new SpeechSynthesisUtterance(`مرحبًا، لقد تم تعيينك في ${data.salle}`);
-            phrase.lang = "ar-SA"; // Langue arabe
-            phrase.rate = 1.3; // Vitesse de la parole (0.1 à 10, 1 = normal)
-            window.speechSynthesis.speak(phrase);
-        }
+        //             if ('speechSynthesis' in window) {
+        //     var phrase = new SpeechSynthesisUtterance(`مرحبًا، لقد تم تعيينك في ${data.salle}`);
+        //     phrase.lang = "ar-SA"; // Langue arabe
+        //     phrase.rate = 1.3; // Vitesse de la parole (0.1 à 10, 1 = normal)
+        //     window.speechSynthesis.speak(phrase);
+        // }
 
 
             // Cacher les infos et réafficher le loader après 30 secondes
@@ -225,6 +228,9 @@
             } else {
 
                 bodyDiv.animate({'backgroundColor':"#f8191b"}, 2000);
+                
+                var audioerror = new Audio("{{asset('error.wav')}}");
+                audioerror.play();
 
                 $("#candidate-info").html(`<p class="text-danger">${data.message}</p>`).show();
                 setTimeout(function() {
@@ -242,6 +248,8 @@
 
             var errorMessage = JSON.parse(xhr.responseText).message;
             $("#candidate-info").html(`<p class="text-danger">${errorMessage}</p>`).show();
+            var audioerror = new Audio("{{asset('error.wav')}}");
+            audioerror.play();
             setTimeout(function() {
                 $("#candidate-info").fadeOut(function() {
                     $(".dimmer").fadeIn();

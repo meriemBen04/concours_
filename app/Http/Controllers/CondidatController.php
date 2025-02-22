@@ -121,21 +121,30 @@ class CondidatController extends Controller
     }
     public function import(Request $request)
 {
+
     $request->validate([
         'file' => 'required|mimes:xls,xlsx,csv'
     ]);
 
+
     $file = $request->file('file');
     $filePath = $file->getPathname();
+
 
     try {
 
         $spreadsheet = IOFactory::load($filePath);
+
         $sheet = $spreadsheet->getActiveSheet();
+
         $rows = $sheet->toArray(null, true, true, true);
+
+
+
 
         // Récupérer le dernier concours créé
         $dernierConcours = Concours::latest('id')->first();
+
         if (!$dernierConcours) {
             return back()->with('error', 'Aucun concours trouvé.');
         }
@@ -149,10 +158,12 @@ class CondidatController extends Controller
             $email = $row['B'] ?? null;
             $nom = $row['E'] ?? null;
             $prenom = $row['F'] ?? null;
+
             $dateNaissance = $row['G'] ?? null;
             $phone = $row['H'] ?? null;
             $specialiteNom = $row['I'] ?? null;
             $salleNom = $row['K'] ?? null;
+
 
             if ($dateNaissance) {
 
@@ -160,7 +171,6 @@ class CondidatController extends Controller
                     // Convertir en format MySQL (YYYY-MM-DD)
                     $dateNaissance = Carbon::createFromFormat('d/m/Y', $dateNaissance)->format('Y-m-d');
                 } catch (\Exception $e) {
-                    dd($row);
 
                     return back()->with('error', "Format de date invalide pour: $dateNaissance");
                 }
@@ -207,6 +217,7 @@ class CondidatController extends Controller
         session()->flash('notification.message', 'Importation réussie.');
         return back();
     } catch (\Exception $e) {
+
         session()->flash('notification.type', 'error');
         session()->flash('notification.message', 'Erreur lors de l’importation: ' . $e->getMessage());
         return back();
